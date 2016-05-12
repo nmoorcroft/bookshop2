@@ -3,3 +3,5 @@
 node_modules
 typings
 bookshop2-ui.iml
+dist
+npm-debug.log

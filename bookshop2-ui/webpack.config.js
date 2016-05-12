@@ -46,8 +46,9 @@ module.exports = function makeWebpackConfig() {
                 exclude: /node_modules/,
                 loader: 'ts-loader'
             },
-            {test: /\.html$/, loader:'html'}
-
+            {test: /\.html$/, loader:'raw'},
+            {test: /\.scss/, exclude: root('src', 'app'), loader:'style!css!sass'},
+            {test: /\.scss/, exclude: root('src', 'style'), loader:'raw!css!sass'}
         ]
 
     };
