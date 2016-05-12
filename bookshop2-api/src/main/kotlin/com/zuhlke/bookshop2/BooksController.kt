@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.concurrent.atomic.AtomicLong
 
-data class Book(val id: Long, val content: String)
+data class Book(val id: Long, val title: String)
 
 @RestController
 class BooksController {
