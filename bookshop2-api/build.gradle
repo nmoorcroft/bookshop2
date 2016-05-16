@@ -45,6 +45,8 @@ sourceSets {
 dependencies {
     compile("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version") // New
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    runtime("org.hsqldb:hsqldb")
     testCompile("junit:junit")
 }
 

@@ -7,21 +7,19 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
+fun main(args: Array<String>) {
+    SpringApplication.run(Application::class.java, *args)
+}
+
 @SpringBootApplication
 open class Application {
 
     @Bean
-    open fun corsConfigurer(): WebMvcConfigurer {
-        return object : WebMvcConfigurerAdapter() {
-            override fun addCorsMappings(registry: CorsRegistry) {
-                registry.addMapping("/books").allowedOrigins("*")
-            }
-
+    open fun corsConfigurer(): WebMvcConfigurer = object : WebMvcConfigurerAdapter() {
+        override fun addCorsMappings(registry: CorsRegistry) {
+            registry.addMapping("/books").allowedOrigins("*")
         }
     }
-}
 
-fun main(args: Array<String>) {
-    SpringApplication.run(Application::class.java, *args)
 }
 
