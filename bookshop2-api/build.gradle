@@ -47,6 +47,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.springframework.boot:spring-boot-devtools")
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.6.6")
     runtime("org.hsqldb:hsqldb")
     testCompile("junit:junit")
 }

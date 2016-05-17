@@ -4,13 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.jdbc.core.*
+import org.springframework.validation.BindingResult
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.constraints.NotNull
 
 data class Book(val id: Long, val title: String)
-class NewBook() { var title: String = "" }
+data class NewBook(@NotNull val title: String)
 
 @RestController
 class BooksController @Autowired constructor(val jdbcTemplate: JdbcTemplate) {
@@ -27,10 +30,12 @@ class BooksController @Autowired constructor(val jdbcTemplate: JdbcTemplate) {
     }
 
     @RequestMapping("/new-book")
-    fun newBook(@RequestBody newBook: NewBook): ResponseEntity<String> {
+    fun newBook(@RequestBody @Validated newBook: NewBook, bindingResult: BindingResult): ResponseEntity<String> {
+        if (bindingResult.hasErrors()) return ResponseEntity(HttpStatus.BAD_REQUEST)
         jdbcTemplate.update("insert into book (book_id, title) values (null, ?)", newBook.title)
         return ResponseEntity(HttpStatus.CREATED)
     }
+
 
 }
 

@@ -10,7 +10,7 @@ import '../style/app.scss';
   styles: [ require('./app.component.scss') ],
   providers: [ BooksService ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     constructor (private booksService: BooksService) {}
 
     errorMessage: string;
@@ -19,7 +19,8 @@ export class AppComponent {
     ngOnInit() {
         this.booksService.getBooks().subscribe(
             books => this.books = books,
-            error => this.errorMessage = <any>error);
+            error => this.errorMessage = <any>error
+        );
     }
 
 
